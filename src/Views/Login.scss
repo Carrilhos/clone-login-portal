@@ -1,0 +1,122 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-login {
+  width: 400px;
+  height: 400px;
+  padding: 20px;
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  @media (min-width: 1920px){    
+    .auth-wrapper {
+      background-color: white;
+    }
+    // .dark-layout {
+    //   .auth-wrapper {
+    //     background-color: $theme-dark-card-bg;
+    //   }
+    // }  
+  }
+  
+
+  .auth-inner {
+    width: 100%;
+    position: relative;
+    max-width: 1920px;
+  }
+
+  &.auth-v2 {
+    align-items: flex-start;
+    .auth-inner {
+      overflow-y: auto; // For v2 scroll for long auth form
+      height: calc(var(--vh, 1vh) * 100);
+    }
+    .brand-logo {
+      position: absolute;
+      top: 2rem;
+      // left: 2rem;
+      margin: 0;
+      z-index: 1;
+    }
+  }
+
+
+  .brand-logo {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 2rem 0;
+    .brand-text {
+      font-weight: 600;
+    }
+  }
+
+  #access-key, #login-email, #login-password {
+    border-color: #d6ecf7;
+  }
+
+  #forgot-password-login {
+    color: #6e6b7b;
+  }
+
+  .btn-login-v2{
+    background-color: #307DA2;
+    color: white;
+  }
+
+  #text-back-login {
+    color: #5E5873;
+  }
+
+
+  .auth-footer-btn {
+    .btn {
+      padding: 0.6rem !important;
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-height: 625px) {
+  // .dark-layout {
+  //   .auth-wrapper .auth-inner {
+  //     background-color: $theme-dark-card-bg;
+  //   }
+  // }
+  .auth-wrapper {
+    .auth-bg {
+      padding-top: 3rem;
+    }
+    .auth-inner {
+      background-color: white;
+      padding-bottom: 1rem;
+    }
+    &.auth-v2 .brand-logo {
+      width: 100%;
+      display: flex;
+      justify-content: unset;
+      position: relative;
+      left: 0;
+      padding-left: 1.5rem;
+    }
+  }
+}
+.button-login {
+  background-color: #ff9f43 !important;
+  border: 1px solid #ff9f43 !important;
+  border-radius: .358rem;
+}

@@ -12,7 +12,7 @@ import Login from './Views/Login';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/clone-login-portal",
     element: <Login />,
     exact: 'true'
   },

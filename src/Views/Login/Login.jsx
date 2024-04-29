@@ -103,7 +103,7 @@ const Login = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="font-weight-bold mb-1">
-             LocalHost
+             build
             </CardTitle>
             <CardText className="mb-2">Por favor, entre na sua conta</CardText>
             <Form

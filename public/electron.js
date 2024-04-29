@@ -25,7 +25,7 @@ function createWindow() {
     mainWindow.loadURL(startURL);
 
     // Abrir o DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     // Emitido quando a janela é fechada.
     mainWindow.on('closed', function () {

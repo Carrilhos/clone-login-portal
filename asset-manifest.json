@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/clone-login-portal/static/css/main.38012ebf.css",
-    "main.js": "/clone-login-portal/static/js/main.6e2a1681.js",
-    "static/media/login-v2.svg": "/clone-login-portal/static/media/login-v2.2198399dbc4d74f02e45d6f593ce319f.svg",
-    "static/media/logo-cigam.png": "/clone-login-portal/static/media/logo-cigam.a02eb88874897b30f090.png",
-    "index.html": "/clone-login-portal/index.html",
-    "main.38012ebf.css.map": "/clone-login-portal/static/css/main.38012ebf.css.map",
-    "main.6e2a1681.js.map": "/clone-login-portal/static/js/main.6e2a1681.js.map"
+    "main.css": "./static/css/main.a225aa1b.css",
+    "main.js": "./static/js/main.d08aec91.js",
+    "static/media/login-v2.svg": "./static/media/login-v2.2198399dbc4d74f02e45d6f593ce319f.svg",
+    "static/media/logo-cigam.png": "./static/media/logo-cigam.a02eb88874897b30f090.png",
+    "index.html": "./index.html",
+    "main.a225aa1b.css.map": "./static/css/main.a225aa1b.css.map",
+    "main.d08aec91.js.map": "./static/js/main.d08aec91.js.map"
   },
   "entrypoints": [
-    "static/css/main.38012ebf.css",
-    "static/js/main.6e2a1681.js"
+    "static/css/main.a225aa1b.css",
+    "static/js/main.d08aec91.js"
   ]
 }

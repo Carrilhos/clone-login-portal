@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import Login from './Views/Login/Login';
 import Home from './Views/Home/Home';
+import CadastroFornecedores from './Views/CadastroFornecedores/CadastroForncedores';
+
 import { ToastContainer } from 'react-toastify';
 
 import "react-toastify/dist/ReactToastify.css";
@@ -23,6 +25,11 @@ const router = createHashRouter([
   {
     path: "/",
     element: <Login />,
+    exact: 'true'
+  },
+  {
+    path: "fornecedores/cadastro",
+    element: <CadastroFornecedores />,
     exact: 'true'
   },
 ],{

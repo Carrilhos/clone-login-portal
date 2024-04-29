@@ -14,3 +14,16 @@
   padding: 20px;
   // border: 1px solid red
 }
+
+.buttons-link {
+  border: none;
+  background-color: rgb(244, 154, 38);
+  
+  &:hover {
+    background-color: rgb(255, 149, 11);
+  }
+
+  &:disabled {
+    background-color: rgba(237, 163, 67, 0.923)
+  }
+}

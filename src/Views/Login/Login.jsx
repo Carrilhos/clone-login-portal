@@ -15,12 +15,13 @@ import {
   Form,
 } from "reactstrap";
 
-import logoCigam from "../assets/images/logos_cigam/logo-cigam.png";
+import logoCigam from "../../assets/images/logos_cigam/logo-cigam.png";
 
-import source from "../assets/images/pages/login-v2.svg";
+import source from "../../assets/images/pages/login-v2.svg";
 
 import "./Login.scss";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,10 +30,14 @@ const Login = () => {
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("")
 
+  const [isLoading, setIsLoading] = useState("")
+
   // const illustration = "login-v2.svg",
   //   source = require(`../assets/images/pages/${illustration}`).default;
 
+
   const handleLogin = (e) => {
+    setIsLoading(true)
     const loginBase64 = btoa(`${user}:${password}`);
 
 		const headers = acessKey
@@ -47,15 +52,22 @@ const Login = () => {
 			  };
 
 
-    axios.post(` ${process.env.REACT_APP_API}/autenticacao/autenticar`, {
+    axios.post(`${process.env.REACT_APP_API}/autenticacao/autenticar`, {
       username: user,
       password
     }, {headers: headers})
       .then(response => {
-        alert('Logado')
+        setIsLoading(false)
+
+        navigate(`/home/${user}`);
+
         console.log(response)
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        setIsLoading(false)
+
+        toast.error('Ocorreu um erro')
+      })
   }
 
   return (
@@ -91,14 +103,13 @@ const Login = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="font-weight-bold mb-1">
-              {process.env.IS_DEV ? "Rodando localhost" : "Rodando build"}
+             LocalHost
             </CardTitle>
             <CardText className="mb-2">Por favor, entre na sua conta</CardText>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleLogin()
-                // navigate("/home");
               }}
             >
               <FormGroup>
@@ -153,7 +164,8 @@ const Login = () => {
                 className="button-login"
                 id="buttonLogin"
                 color="primary"
-                onClick={false}
+                type='submit'
+                disabled={isLoading}
                 style={{width: '100%'}}
               >
                 Entrar

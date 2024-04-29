@@ -5,12 +5,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import Login from './Views/Login';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/clone-login-portal",
     element: <Login />,

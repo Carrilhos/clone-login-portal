@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { useNavigate, Link } from "react-router-dom";
 
 import {
@@ -13,17 +15,60 @@ import {
   Form,
 } from "reactstrap";
 
-import logoCigam from "../assets/images/logos_cigam/logo-cigam.png";
+import logoCigam from "../../assets/images/logos_cigam/logo-cigam.png";
 
-import source from "../assets/images/pages/login-v2.svg";
+import source from "../../assets/images/pages/login-v2.svg";
 
 import "./Login.scss";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
 
+  const [acessKey, setAcessKey] = useState("")
+  const [user, setUser] = useState("")
+  const [password, setPassword] = useState("")
+
+  const [isLoading, setIsLoading] = useState("")
+
   // const illustration = "login-v2.svg",
   //   source = require(`../assets/images/pages/${illustration}`).default;
+
+
+  const handleLogin = (e) => {
+    setIsLoading(true)
+    const loginBase64 = btoa(`${user}:${password}`);
+
+		const headers = acessKey
+			? {
+					Authorization: `Basic ${loginBase64}`,
+					Acesso: `${acessKey}`,
+					"Access-Control-Allow-Origin": "*",
+			  }
+			: {
+					Authorization: `Basic ${loginBase64}`,
+					"Access-Control-Allow-Origin": "*",
+			  };
+
+
+    axios.post(`${process.env.REACT_APP_API}/autenticacao/autenticar`, {
+      username: user,
+      password
+    }, {headers: headers})
+      .then(response => {
+        setIsLoading(false)
+
+        navigate(`/home/${user}`);
+
+        console.log(response)
+      })
+      .catch(error => {
+        setIsLoading(false)
+
+        toast.error('Ocorreu um erro')
+      })
+  }
 
   return (
     <div className="app">
@@ -40,7 +85,7 @@ const Login = () => {
             alt="Logo da Cigam no canto superior esquerdo"
           />
         </div>
-        <h2 className="brand-text text-primary ml-1"></h2>
+        <div className="brand-text text-primary ml-1" />
       </Link>
       <Col className="d-none d-lg-flex align-items-center" lg="8" sm="12">
         <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
@@ -58,13 +103,13 @@ const Login = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="font-weight-bold mb-1">
-              Bem-vindo à CIGAM!
+             build
             </CardTitle>
             <CardText className="mb-2">Por favor, entre na sua conta</CardText>
             <Form
               onSubmit={(e) => {
                 e.preventDefault();
-                navigate("/home");
+                handleLogin()
               }}
             >
               <FormGroup>
@@ -75,7 +120,8 @@ const Login = () => {
                   type="text"
                   autoFocus
                   tabIndex="1"
-                  //placeholder='1234567'
+                  value={acessKey}
+                  onChange={({target : {value}} ) => setAcessKey(value)}
                   required
                   id="acesskey"
                 />
@@ -90,6 +136,8 @@ const Login = () => {
                   tabIndex="1"
                   //placeholder='cigam@example.com'
                   //autoFocus
+                  value={user}
+                  onChange={({target : {value}} ) => setUser(value)}
                   required
                   id="user"
                 />
@@ -106,6 +154,8 @@ const Login = () => {
                   tabIndex="1"
                   id="password"
                   //autoFocus
+                  value={password}
+                  onChange={({target : {value}} ) => setPassword(value)}
                   required
                   placeholder=""
                 />
@@ -114,7 +164,8 @@ const Login = () => {
                 className="button-login"
                 id="buttonLogin"
                 color="primary"
-                onClick={false}
+                type='submit'
+                disabled={isLoading}
                 style={{width: '100%'}}
               >
                 Entrar
